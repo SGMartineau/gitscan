@@ -12,7 +12,12 @@ angular.module('gitScan', ['ui.router'])
     .state('info', {
         url: '/info',
         templateUrl: 'info/infoTmpl.html',
-        controller: 'infoCtrl'
+        controller: 'infoCtrl',
+        resolve: {
+            information: function (infoSvc, landingSvc) {
+                return infoSvc.getInfo(landingSvc.userName);
+            }
+        }
     });
     
     $urlRouterProvider.otherwise('/');
